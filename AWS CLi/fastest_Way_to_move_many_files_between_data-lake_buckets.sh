@@ -1,0 +1,6 @@
+#!/bin/sh
+SOURCE_PATH="${1:}" # s3://bucket_name/...
+DEST_PATH="${2:}" # s3://bucket_name/...
+PREFIX="${3:}"
+
+aws s3 mv "$SOURCE_PATH" "$DEST_PATH" --recursive  --exclude "*"  --include "$PREFIX*"

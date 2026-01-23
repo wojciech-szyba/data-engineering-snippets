@@ -1,0 +1,4 @@
+#!/bin/sh
+NAMESPACE="${1:-default}"
+
+kubectl get nodes -o custom-columns=NAME:.metadata.name | kubectl describe node -n "$NAMESPACE" | grep Taint
