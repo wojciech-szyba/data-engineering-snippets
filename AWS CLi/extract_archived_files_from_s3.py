@@ -27,9 +27,8 @@ def keys(bucket_name, prefix='/', delimiter='/', start_after=''):
                         },
                     )
                     print(response)
-                except Exception as err:
-                    #print(err)
-                    pass
+                except Exception as err:                    
+                    print(str(err))
 
             else:
                 cnt_non_glacier += 1
