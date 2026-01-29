@@ -23,10 +23,8 @@ class DagsterInternalDB(object):
         self.days = 30
 
     def delete_old_event_logs(self):
-        # Calculate the timestamp for one month ago
         one_month_ago = datetime.now() - timedelta(days=self.days)
 
-        # SQL query to delete logs older than one month
         delete_query = """
             DELETE FROM event_logs
             WHERE timestamp < %s                    
