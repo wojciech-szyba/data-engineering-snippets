@@ -49,8 +49,8 @@ def retry_failed_runs(context: OpExecutionContext):
                                statuses=[DagsterRunStatus.FAILURE])
         )
 
+    client = DagsterGraphQLClient(DAGSTER_API, timeout=100)
     for run in failed_runs:
-        client = DagsterGraphQLClient(DAGSTER_API, timeout=100)
         run_config = run.run_config if run.run_config else {}
         tags = run.tags if run.tags else {}
         try:
