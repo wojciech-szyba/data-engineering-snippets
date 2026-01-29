@@ -23,7 +23,7 @@ class DagsterInternalDB(object):
         self.days = 30
 
     def delete_old_event_logs(self):
-        one_month_ago = datetime.now() - timedelta(days=self.days)
+        date_since = datetime.now() - timedelta(days=self.days)
 
         delete_query = """
             DELETE FROM event_logs
@@ -33,7 +33,7 @@ class DagsterInternalDB(object):
             """
 
         # Execute the query
-        self.cursor.execute(delete_query, (one_month_ago,))
+        self.cursor.execute(delete_query, (date_since,))
 
         # Commit the transaction
         self.conn.commit()
@@ -46,7 +46,7 @@ class DagsterInternalDB(object):
         """
 
         # Execute the query
-        self.cursor.execute(delete_query, (one_month_ago,))
+        self.cursor.execute(delete_query, (date_since,))
 
         # Commit the transaction
         self.conn.commit()
